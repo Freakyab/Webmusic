@@ -1,14 +1,14 @@
 import React, { useContext, useState } from "react";
 import dataContext from "../assets/context";
 const Home = (props) => {
-    const {  setState } = props;
+    const {  setState,name } = props;
     const data = useContext(dataContext);
     const [display, setDisplay] = useState(false);
     return (
         <>
             <div className=" w-full h-[100vh]">
                 <div className="flex flex-col justify-center content-center m-5 p-5 text-5xl font-semibold w-fit">
-                    <h1>Hello John,</h1>
+                    <h1>Hello {name},</h1>
                 </div>
                 <hr className="text-black border-2 border-black" />
                 <h2 className="p-5 m-5 text-3xl ">

@@ -6,8 +6,9 @@ import "./styles/index.css";
 import "swiper/css";
 import "swiper/css/pagination";
 const slide = (props) => {
+    // localStorage.clear();
     const { data, label } = props;
-    
+
     if (data.length === 0) return null;
     const [clicked, setClicked] = useState(Array(data.length).fill(false));
 
@@ -15,9 +16,33 @@ const slide = (props) => {
         const newClicked = [...clicked];
         newClicked[index] = !newClicked[index];
         setClicked(newClicked);
+
+        if(label === "Albums" ){
+            console.log(data[index].data.name);
+            // let localData = data[index].data.name;
+        }
+        else if(label === "Artists" ){
+            console.log(data[index].data.profile.name);
+        }
+        else if(label === "Episodes" ){
+            console.log(data[index].data.contentRating.label);
+        }
+        else if(label === "Playlist" ){
+            console.log(data[index].data.name);
+        }
+        else if(label === "Podcasts" ){
+            console.log(data[index].data.name);
+        }
+
+        // if (newClicked[index] === true)
+        //     localStorage.setItem(localData, label);
+        // else
+        //     localStorage.removeItem(data[index].data.name);
+
     };
     return (
         <>
+            {/* {console.log(localStorage)} */}
             <div className="h-full pt-10 pb-10 overflow-visible">
                 <Swiper
                     slidesPerView={4}
@@ -33,10 +58,9 @@ const slide = (props) => {
                 >
 
                     {data.map((item, index) => {
-                        console.log(item.data.images.items[0].sources[0].url);
                         return (
                             <>
-                                
+
                                 <SwiperSlide key={index} className="smallSlider cursor-pointer">
                                     <div className="relative h-[500px] w-[300px] mt-5 rounded-lg bg-gray-800 shadow-md"
                                         onClick={() => handleClick(index)}
